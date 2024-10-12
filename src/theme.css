@@ -20,11 +20,13 @@
   transition: all .5s;
 }
 
-.theme-btn:hover {
+.theme-btn:hover, 
+.theme-btn:focus{
   background-color: #fc4364;
   color: #fff;
   font-size: 1.03rem;
 }
+
 
 
 
@@ -45,6 +47,29 @@
   color: white;
 }
 
+.dark .fa-moon {
+  display: none;
+}
+
+.light .fa-sun {
+  display: none;
+}
+
+.fa-solid {
+  padding: 5px;
+font-size: 28px;
+color: gold;
+opacity: 0.88;
+
+transition: all 0.3s;
+}
+
+.fa-solid:hover {
+  font-size: 30px;
+  opacity: 1;
+  cursor: pointer;
+  }
+  
 
 
 

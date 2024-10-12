@@ -5,6 +5,11 @@ import HTML from "./pages/html";
 import Css from "./pages/css";
 import Javascript from "./pages/javascript";
 
+import Signin from "./pages/Signin"
+import Signup from "./pages/Signup"
+import NotSighIn from "./pages/NotSighIn"
+
+
 import {useContext } from "react";
 import ThemeContext from "./context/ContextData";
 
@@ -18,6 +23,24 @@ const router = createBrowserRouter([
     errorElement: <h1>SORROY.........</h1>,
   },
 
+  
+  {
+    path: "/Signin",
+    element: <Signin />,
+  }
+  
+  ,
+
+  {
+    path: "/NotSighIn",
+    element: <NotSighIn />,
+  }
+  ,
+
+  {
+    path: "/Signup",
+    element: <Signup />,
+  },
   {
     path: "/html",
     element: <HTML />,
@@ -35,13 +58,13 @@ const router = createBrowserRouter([
 
 
 function App() {
-  const {theme, toggleTheme} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
+
 
 
   return (
   <div className={`${theme}`}>
-  
-      <RouterProvider router={router} />
+      <RouterProvider router={router} /> 
   </div>
   )
   

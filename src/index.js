@@ -11,7 +11,9 @@ root.render(
   <React.StrictMode>
     <HelmetProvider>
       <ThemeProvider>
+
         <App />
+        
       </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>

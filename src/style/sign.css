@@ -1,0 +1,122 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*=================
+    sign up
+===================*/
+
+form {
+display: flex;
+flex-direction: column;
+
+}
+
+input {
+  margin-bottom: 23px;
+  font-size: 19px ;
+  border-radius: 5px;
+  padding-block:5px ;
+  padding-inline:5px ;
+color: black;
+border: 1px solid teal;
+}
+
+input:focus {
+border: 1.8px solid rgba(0, 128, 128, 0.557);
+outline: none;
+}
+
+form h1 {
+  font-size: 28px;
+}
+
+
+
+form button {
+  background-color: rgb(3, 128, 128);
+  opacity: 0.9;
+  font-size: 20px;
+  padding-block:5px ;
+  border-radius: 5px;
+}
+
+form button:active {
+  scale: 0.9;
+  border-radius: 0;
+  opacity: 1;
+
+}
+
+form p {
+  font-size: 19px;
+  font-weight: 400;
+  margin-top: 18px;
+}
+form p a {
+  text-decoration: underline;
+  color: rgb(15, 210, 210);
+  font-weight: bold;
+}
+
+.light form h1 {
+
+}
+
+.light form h1
+,.light form p {
+  color: rgba(0, 0, 0, 0.886);
+}
+
+
+.dark .error-msg,
+.light .error-msg  {
+  font-size: 18px ;
+  color: rgba(255, 0, 0, 0.895);
+margin-top: 0 !important;
+}
+
+
+.go-to-sign-in {
+  font-size: 27px;
+border-bottom: 2px solid;  
+color: rgb(15, 210, 210);
+  font-weight: bold;
+}
+
+.go-to-sign-in:active {
+  font-size: 25px;
+scale: 0.9;}
+
+
+
+
+.btn01 {
+  background-color: rgb(3, 128, 128);
+  font-size: 20px;
+  padding-block: 5px;
+  padding-inline: 15px;
+  border-radius: 5px;
+}
+
+.btn01:hover {
+cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
