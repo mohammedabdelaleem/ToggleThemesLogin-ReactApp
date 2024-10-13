@@ -15,7 +15,7 @@ const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if (!user && !loading) {
+    if ((!user && !loading) ||(user && !user.emailVerified)) {
       navigate("/");
     }
   });
@@ -48,7 +48,7 @@ const Profile = () => {
     );
   }
 
-  if (user) {
+  if (user  && user.emailVerified) {
     return (
       <>
         <Helmet>
@@ -61,18 +61,7 @@ const Profile = () => {
               font-size: 25px;
           }
 
-          .deleteAcc {
-  all: reset;
-  background-color: rgba(255, 0, 0, 0.895);
-color: white;
-font-size: 20px;
-padding: 8px 15px;
-margin-top : 15px;
-border-radius : 3px;
-border: 1px solid red;
-outline : none;
 
-}
 
 
           `}
@@ -101,7 +90,7 @@ outline : none;
               <Moment fromNow date={user.metadata.creationTime}></Moment>
             </h2>
 
-            <button className="deleteAcc">Delete Account</button>
+            <button className="delete">Delete Account</button>
           </div>
         </main>
 

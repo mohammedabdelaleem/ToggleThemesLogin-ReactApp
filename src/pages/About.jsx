@@ -14,23 +14,38 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Html = () => {
+const About = () => {
   /// you must sign in 
   const navigate = useNavigate()
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
 
   useEffect(() => {
-    if(!user) {
+    if(!user  || (user  && !user.emailVerified)) {
       navigate("/");
     }
 
     }
   )
 
+  // loading
+  if (loading) {
+    return (
+      <div>
+        <Header />
+
+        <main>
+          <h1>Loading..........................</h1>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
 
 
-  return (
+if(user && user.emailVerified) 
+{  return (
     <div>
          <Helmet>
         <title>HTML Page</title>
@@ -53,7 +68,10 @@ const Html = () => {
 {!user} */}
 
   </div>
-  );
+  );}
+
+
+
 }
 
-export default Html;
+export default About;
