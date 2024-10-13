@@ -7,14 +7,14 @@ import { useContext } from "react";
 import ThemeContext from "../context/ContextData";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../firebase/config.js";
 import { signOut } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -46,65 +46,26 @@ const Header = () => {
           {/* html */}
           {user && (
             <li className="main-list">
-              <NavLink className="main-link" to="/html">
-                HTML
+              <NavLink className="main-link" to="/about">
+                About
               </NavLink>
-              <ul className="sub-ul">
-                <li>
-                  <a href="">Full Course</a>
-                </li>
-                <li>
-                  <a href="">Crash Course</a>
-                </li>
-                <li>
-                  <a href="">learn in 1h</a>
-                </li>
-              </ul>
+            
             </li>
           )}
 
-          {/* css */}
-          {user && (
-            <li className="main-list">
-              <NavLink className="main-link" to="/css">
-                CSS
-              </NavLink>
-              <ul className="sub-ul">
-                <li>
-                  <a href="">Full Course</a>
-                </li>
-                <li>
-                  <a href="">CSS Examples</a>
-                </li>
-                <li className="mini-projects">
-                  <a href="">mini projects&nbsp; + </a>
-                  <ul className="sub-sub-ul">
-                    <li>
-                      <a href="">project 1</a>
-                    </li>
-                    <li>
-                      <a href="">project 2</a>
-                    </li>
-                    <li>
-                      <a href="">project 3</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          )}
+        
 
           {/* js */}
           {user && (
             <li className="main-list">
-              <NavLink className="main-link" to="/javascript">
-                JavaScript
+              <NavLink className="main-link" to="/profile">
+                Profile
               </NavLink>
-              <ul className="sub-ul sub-of-js">
+              {/* <ul className="sub-ul sub-of-js">
                 <li>
                   <a href="">coming soon🔥</a>
                 </li>
-              </ul>
+              </ul> */}
             </li>
           )}
         </ul>

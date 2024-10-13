@@ -7,7 +7,7 @@ import { Helmet  } from 'react-helmet-async';
 
 ///
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../firebase/config.js";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +39,7 @@ const Html = () => {
 
 
       <Header />
-      <MainContent pageName="HTML Page"  />   
+      <MainContent pageName="Abuot Page"  />   
       <Footer />
 
 {/* {user  && 

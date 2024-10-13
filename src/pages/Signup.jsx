@@ -5,20 +5,24 @@ import { Link } from "react-router-dom";
 
 import "../style/sign.css";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
 
-import { useState } from "react";
+import { auth } from "../firebase/config.js";
+
+import {  useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [hasError, sethasError] = useState(false);
   const [firebaseError, setfirebaseError] = useState("");
 
+
+  
   return (
     <div>
       <Helmet>
@@ -33,7 +37,19 @@ const Signup = () => {
           <h1>
             Create A New Account <span>🧡</span>
           </h1>
+
           <input
+            onChange={(eo) => {
+              setusername(eo.target.value);
+            }}
+            required
+            placeholder=" Username: "
+            type="text"
+          />
+
+
+            
+<input
             onChange={(eo) => {
               setemail(eo.target.value);
             }}
@@ -55,13 +71,27 @@ const Signup = () => {
             onClick={(eo) => {
               eo.preventDefault();
 
+
               createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                   // Signed up
                   const user = userCredential.user;
                   // ...
 
-                  navigate("/");
+                  updateProfile(auth.currentUser, {
+                    displayName: username
+                  }).then(() => {
+                    // Profile updated!
+                    // ...
+
+                    navigate("/");
+
+                  }).catch((error) => {
+                    // An error occurred
+                    // ...
+                  });
+
+                
                 })
                 .catch((error) => {
                   const errorCode = error.code;
