@@ -4,8 +4,6 @@ import { createContext, useReducer } from "react";
 const key = "theme"
 
 
-
-
 //  default local storage
 
  let initialData = { theme:   localStorage.getItem(key) ===null ? "light" : localStorage.getItem(key)};

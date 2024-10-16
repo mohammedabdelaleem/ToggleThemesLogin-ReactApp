@@ -1,29 +1,43 @@
-import Header from "../comp/header";
-import Footer from "../comp/Footer";
+import Header from "../comp/header.jsx";
+import Footer from "../comp/Footer.jsx";
+import Loading from "../comp/loadingAni.jsx"
+
 import { Helmet } from "react-helmet-async";
 
 import { Link } from "react-router-dom";
+
 
 import { sendEmailVerification } from "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config.js";
+import { useState } from "react";
+
 
 const Home = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const [sendEmailSucc,setsendEmailSucc] = useState(false);
+
+
+/// on click on send email btn
+const sendEmailBtn = () => {
+  sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+    // ...
+
+    setsendEmailSucc(true)
+
+  });
+}
+
 
   // loading
   if (loading) {
     return (
-      <div>
-        <Header />
-
-        <main>
-          <h1>Loading..........................</h1>
-        </main>
-
-        <Footer />
-      </div>
+      
+      <Loading />
+    
     );
   }
 
@@ -38,12 +52,12 @@ const Home = () => {
         <Header />
 
         <main>
-          <h1>
-            please Go To
+          <h1 >
+            please Go To &nbsp;
             <Link className="go-to-sign-in" to="/Signin">
               Sign-in/up
             </Link>
-            <span>🧡</span>
+            <span><i  className="fa-solid fa-heart"></i></span>
           </h1>
         </main>
 
@@ -98,20 +112,18 @@ const Home = () => {
           >
             <h2>
               Welcome : {user.displayName}
-              <span>🧡</span>
+              <span><i  className="fa-solid fa-heart"></i></span>
             </h2>
 
             <p>
-              please Verif your email To Continue<span>🤚</span>
+              please Verif your email To Continue<span><i className="fa-solid fa-hand"></i></span>
             </p>
 
             <button onClick={() => {
-              sendEmailVerification(auth.currentUser)
-              .then(() => {
-                // Email verification sent!
-                // ...
-              });
+            sendEmailBtn()
             }} className="delete">send email</button>
+
+            {sendEmailSucc  && <p className="send-email-succ">Sended Email Successfully!</p>}
           </main>
 
           <Footer />
@@ -119,7 +131,6 @@ const Home = () => {
       );
     }
   }
-
 
 };
 

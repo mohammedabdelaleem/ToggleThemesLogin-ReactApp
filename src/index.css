@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
 }
 
 
@@ -41,6 +43,14 @@ header {
 h1 {
   padding: 20px;
   font-size: 25px;
+} 
+
+.dark h1{
+  color: white ;
+}
+
+.light h1{
+  color: #242424 ;
 }
 
 
@@ -52,3 +62,11 @@ button:hover { scale:1.05;
   
   
 
+.send-email-succ{
+  color: rgb(47, 255, 50);
+  font-size: 19px;
+}
+
+.fa-heart {
+  color:  rgb(223, 13, 13) !important;
+}

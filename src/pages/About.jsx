@@ -4,6 +4,7 @@ import Footer from '../comp/Footer';
 import MainContent from '../comp/MainContent';
 import { Helmet  } from 'react-helmet-async';
 
+import Loading from "../comp/loadingAni.jsx"
 
 ///
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -28,21 +29,15 @@ const About = () => {
     }
   )
 
+
   // loading
   if (loading) {
     return (
-      <div>
-        <Header />
-
-        <main>
-          <h1>Loading..........................</h1>
-        </main>
-
-        <Footer />
-      </div>
+      
+      <Loading />
+    
     );
   }
-
 
 if(user && user.emailVerified) 
 {  return (

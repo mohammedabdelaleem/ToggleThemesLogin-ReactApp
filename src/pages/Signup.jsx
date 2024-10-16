@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import "../style/sign.css";
+import Loading from "../comp/loadingAni.jsx"
+
 
 import {
   createUserWithEmailAndPassword,
@@ -43,21 +45,78 @@ const Signup = () => {
     }
   })
 
+/// 
+const signUpBtn = (eo) => {
+  eo.preventDefault();
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up
+      const user = userCredential.user;
+      // ...
+
+      sendEmailVerification(auth.currentUser).then(() => {
+        // Email verification sent!
+        // ...
+
+        console.log("Email verification sent!");
+      });
+
+      updateProfile(auth.currentUser, {
+        displayName: username,
+      })
+        .then(() => {
+          // Profile updated!
+          // ...
+
+          navigate("/");
+        })
+        .catch((error) => {
+          // An error occurred
+          // ...
+        });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+
+      sethasError(true);
+
+      switch (errorCode) {
+        case "auth/invalid-credential":
+          setfirebaseError(
+            "please check your email and password well"
+          );
+          break;
+
+        case "auth/invalid-email":
+          setfirebaseError("wrong email !!");
+          break;
+
+        case "auth/missing-password":
+          setfirebaseError("please enter your password !!");
+          break;
+
+        case "auth/weak-password":
+          setfirebaseError("please enter a strong password !!");
+          break;
+
+        default:
+          setfirebaseError(
+            "please check your email and password well"
+          );
+      }
+    });
+}
 
   // loading
   if (loading) {
     return (
-      <div>
-        <Header />
-
-        <main>
-          <h1>Loading..........................</h1>
-        </main>
-
-        <Footer />
-      </div>
+      
+      <Loading />
+    
     );
   }
+
 
   // sign in ,but not verification  => don't forget you must have a user , to prevent null value
   if (user) {
@@ -73,7 +132,6 @@ const Signup = () => {
         </div>
       );
     }
-
 
 
   }
@@ -124,69 +182,12 @@ const Signup = () => {
 
             <button
               onClick={(eo) => {
-                eo.preventDefault();
-
-                createUserWithEmailAndPassword(auth, email, password)
-                  .then((userCredential) => {
-                    // Signed up
-                    const user = userCredential.user;
-                    // ...
-
-                    sendEmailVerification(auth.currentUser).then(() => {
-                      // Email verification sent!
-                      // ...
-
-                      console.log("Email verification sent!");
-                    });
-
-                    updateProfile(auth.currentUser, {
-                      displayName: username,
-                    })
-                      .then(() => {
-                        // Profile updated!
-                        // ...
-
-                        navigate("/");
-                      })
-                      .catch((error) => {
-                        // An error occurred
-                        // ...
-                      });
-                  })
-                  .catch((error) => {
-                    const errorCode = error.code;
-
-                    sethasError(true);
-
-                    switch (errorCode) {
-                      case "auth/invalid-credential":
-                        setfirebaseError(
-                          "please check your email and password well"
-                        );
-                        break;
-
-                      case "auth/invalid-email":
-                        setfirebaseError("wrong email !!");
-                        break;
-
-                      case "auth/missing-password":
-                        setfirebaseError("please enter your password !!");
-                        break;
-
-                      case "auth/weak-password":
-                        setfirebaseError("please enter a strong password !!");
-                        break;
-
-                      default:
-                        setfirebaseError(
-                          "please check your email and password well"
-                        );
-                    }
-                  });
+              signUpBtn(eo)
               }}
             >
               Sign Up
             </button>
+            
             <p>
               Already Have An Account <Link to="/Signin">Sign-in </Link>
             </p>
@@ -198,6 +199,7 @@ const Signup = () => {
       </div>
     );
   }
+
 
   if (error) {
     return (

@@ -1,5 +1,8 @@
-import Header from "../comp/header";
-import Footer from "../comp/Footer";
+import Header from "../comp/header.jsx";
+import Footer from "../comp/Footer.jsx";
+import Loading from "../comp/loadingAni.jsx"
+
+
 import { Helmet } from "react-helmet-async";
 
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -7,7 +10,13 @@ import { auth } from "../firebase/config.js";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {  deleteUser } from "firebase/auth";
+
+// const auth = getAuth();
+
 import Moment from "react-moment";
+
+
 
 const Profile = () => {
   /// you must sign in
@@ -15,25 +24,37 @@ const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    if ((!user && !loading) ||(user && !user.emailVerified)) {
+    if ((!user && !loading) || (user && !user.emailVerified)) {
       navigate("/");
     }
   });
 
+
+// delete Account Btn
+const deleteAccountBtn= () => {
+  deleteUser(user)
+  .then(() => {
+  console.log("User deleted.");
+    // User deleted.
+  })
+  .catch((error) => {
+    // An error ocurred
+    // ...
+    console.log(error);
+  });
+}
+
+
+
+
+  // loading
   if (loading) {
     return (
-      <div>
-        <Header />
-
-        <main>
-          <h1>Loading..........................</h1>
-        </main>
-
-        <Footer />
-      </div>
+      
+      <Loading />
+    
     );
   }
-
   if (error) {
     return (
       <div>
@@ -48,7 +69,7 @@ const Profile = () => {
     );
   }
 
-  if (user  && user.emailVerified) {
+  if (user && user.emailVerified) {
     return (
       <>
         <Helmet>
@@ -90,7 +111,16 @@ const Profile = () => {
               <Moment fromNow date={user.metadata.creationTime}></Moment>
             </h2>
 
-            <button className="delete">Delete Account</button>
+            <button
+              onClick={() => {
+
+            deleteAccountBtn()
+              
+              }}
+              className="delete"
+            >
+              Delete Account
+            </button>
           </div>
         </main>
 

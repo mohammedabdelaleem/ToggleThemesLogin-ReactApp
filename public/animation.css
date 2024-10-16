@@ -59,7 +59,7 @@ h1 {
 }
 
 span {
-  animation: heart 2s infinite linear;
+  animation: heart 5s infinite linear;
 }
 
 @keyframes heart {

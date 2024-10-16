@@ -59,6 +59,7 @@
   padding: 5px;
 font-size: 28px;
 color: gold;
+margin-left: 5px;
 opacity: 0.88;
 
 transition: all 0.3s;
@@ -67,7 +68,7 @@ transition: all 0.3s;
 .fa-solid:hover {
   font-size: 30px;
   opacity: 1;
-  cursor: pointer;
+  /* cursor: pointer;    */
   }
   
 

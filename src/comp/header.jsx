@@ -18,54 +18,57 @@ const Header = () => {
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
+  ///
+  const signOutBtn = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+
+        navigate("/Signin");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <div className={`myheader `}>
       <header className="hide-when-mobile ali">
         {/* don't go to the main page until you sign in */}
-          <h1>
-            <Link to="/">AWF</Link>
-          </h1>
-        
-
+        <h1>
+          <Link to="/">AWF</Link>
+        </h1>
 
         <i
           onClick={() => {
             toggleTheme(theme === "dark" ? "light" : "dark");
           }}
-          class="fa-solid fa-sun"
+          className="fa-solid fa-sun"
         ></i>
 
         <i
           onClick={() => {
             toggleTheme(theme === "dark" ? "light" : "dark");
           }}
-          class="fa-solid fa-moon"
+          className="fa-solid fa-moon"
         ></i>
 
         <ul className="flex">
-          {/* html */}
+          {/* About */}
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/about">
                 About
               </NavLink>
-            
             </li>
           )}
 
-        
-
-          {/* js */}
+          {/* Profile */}
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/profile">
                 Profile
               </NavLink>
-              {/* <ul className="sub-ul sub-of-js">
-                <li>
-                  <a href="">coming soon🔥</a>
-                </li>
-              </ul> */}
             </li>
           )}
         </ul>
@@ -93,15 +96,7 @@ const Header = () => {
           {user && (
             <li
               onClick={() => {
-                signOut(auth)
-                  .then(() => {
-                    // Sign-out successful.
-
-                    navigate("/Signin");
-                  })
-                  .catch((error) => {
-                    // An error happened.
-                  });
+                signOutBtn();
               }}
               className="main-list"
             >
@@ -123,59 +118,18 @@ const Header = () => {
               HTML <i className="fas fa-plus" />
             </label>
             <input id="html" type="checkbox" />
-            <ul className="sub-div">
-              <li>
-                <NavLink to="/html">Full Course</NavLink>
-              </li>
-              <li>
-                <a href="">Crash Course</a>
-              </li>
-              <li>
-                <a href="">learn in 1h</a>
-              </li>
-            </ul>
           </div>
           <div className="main-div">
             <label htmlFor="css">
               CSS <i className="fas fa-plus" />
             </label>
             <input id="css" type="checkbox" />
-            <ul className="sub-div">
-              <li>
-                <NavLink to="/css">Full Course</NavLink>
-              </li>
-              <li>
-                <a href="">CSS Examples</a>
-              </li>
-              <li>
-                <label className="mini-projects" htmlFor="mini">
-                  mini projects <i className="fas fa-plus" />
-                </label>
-                <input id="mini" type="checkbox" />
-                <ul className="sub-sub-div">
-                  <li>
-                    <a href="">project 1</a>
-                  </li>
-                  <li>
-                    <a href="">project 2</a>
-                  </li>
-                  <li>
-                    <a href="">project 3</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
           </div>
           <div className="main-div">
             <label htmlFor="js">
               JavaScript <i className="fas fa-plus" />
             </label>
             <input id="js" type="checkbox" />
-            <ul className="sub-div">
-              <li>
-                <NavLink to="/javascript">coming soon🔥</NavLink>
-              </li>
-            </ul>
           </div>
         </div>
       </header>

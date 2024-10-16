@@ -11,8 +11,12 @@
   background-color: teal;
 }
 
+.myfooter .fa-heart {
+  font-size: 18px;
+}
 
-
- 
+.myfooter .fa-heart:hover {
+  font-size: 19px;
+}
 
 

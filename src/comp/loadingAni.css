@@ -1,0 +1,32 @@
+
+
+
+.loading {
+
+  width: 300px;
+  height: 300px;
+
+  border-color:  red;
+  border-top-style: solid;
+  border-right-style: solid;
+
+border-width: 10px ;
+border-top-style: 10px ;
+
+border-radius: 50%;
+
+animation: loading-ani 0.5s infinite linear;
+}
+
+@keyframes loading-ani {
+
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+    
+  }
+  
