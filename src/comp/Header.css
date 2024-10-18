@@ -31,6 +31,27 @@
 
 
 
+/* ================
+loga ani
+================*/
+
+.logo {
+  animation: letter-spacing-ani 10s infinite linear;
+}
+
+
+
+@keyframes letter-spacing-ani {
+  0% , 100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+    letter-spacing: 7px;
+  }
+}
+
 
 
 

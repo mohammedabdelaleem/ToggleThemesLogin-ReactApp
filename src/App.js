@@ -3,10 +3,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Profile from "./pages/profile";
-
+import Error404 from "./pages/Error404";
 import Signin from "./pages/Signin"
 import Signup from "./pages/Signup"
-import NotSighIn from "./pages/NotSighIn"
 
 
 import {useContext } from "react";
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <h1>SORROY.........</h1>,
+    errorElement: <Error404/>,
   },
 
   
@@ -30,11 +29,7 @@ const router = createBrowserRouter([
   
   ,
 
-  {
-    path: "/NotSighIn",
-    element: <NotSighIn />,
-  }
-  ,
+
 
   {
     path: "/Signup",

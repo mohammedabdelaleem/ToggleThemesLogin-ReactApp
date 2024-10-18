@@ -36,7 +36,7 @@ const Header = () => {
       <header className="hide-when-mobile ali">
         {/* don't go to the main page until you sign in */}
         <h1>
-          <Link to="/">AWF</Link>
+          <Link className="logo" to="/">AWF</Link>
         </h1>
 
         <i
@@ -106,33 +106,7 @@ const Header = () => {
         </ul>
       </header>
 
-      <header className="show-when-mobile ali">
-        <h1>AWF</h1>
-        <label className="absolute" htmlFor="burger">
-          <i className="fas fa-bars" />
-        </label>
-        <input id="burger" type="checkbox" />
-        <div className="show-on-click">
-          <div className="main-div">
-            <label htmlFor="html">
-              HTML <i className="fas fa-plus" />
-            </label>
-            <input id="html" type="checkbox" />
-          </div>
-          <div className="main-div">
-            <label htmlFor="css">
-              CSS <i className="fas fa-plus" />
-            </label>
-            <input id="css" type="checkbox" />
-          </div>
-          <div className="main-div">
-            <label htmlFor="js">
-              JavaScript <i className="fas fa-plus" />
-            </label>
-            <input id="js" type="checkbox" />
-          </div>
-        </div>
-      </header>
+      
     </div>
   );
 };

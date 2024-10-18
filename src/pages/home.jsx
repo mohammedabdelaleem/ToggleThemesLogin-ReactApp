@@ -53,9 +53,9 @@ const sendEmailBtn = () => {
 
         <main>
           <h1 >
-            please Go To &nbsp;
+            Please Go To &nbsp;
             <Link className="go-to-sign-in" to="/Signin">
-              Sign-in/up
+              Sign-in
             </Link>
             <span><i  className="fa-solid fa-heart"></i></span>
           </h1>

@@ -3,7 +3,6 @@ import Footer from "../comp/Footer";
 
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import Singnup from "./Signup.jsx";
 import "../style/sign.css";
 
 import {
@@ -24,7 +23,9 @@ const Signin = () => {
   const [hasError, sethasError] = useState(false);
   const [firebaseError, setfirebaseError] = useState("");
   const [showSendEmail, setshowSendEmail] = useState(false);
+  const [mainFormState, setmainFormState] = useState(false);
   const [showForgotPass, setshowForgotPass] = useState("");
+  const [forgettenEmailCorrectenece, setforgettenEmailCorrectenece] = useState(false);
 
   ///
   const signInBtn = (eo) => {
@@ -33,7 +34,6 @@ const Signin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user; /*user info*/
         // ...
         navigate("/");
       })
@@ -63,16 +63,31 @@ const Signin = () => {
   const ResetPasswordBtn = (eo) => {
     eo.preventDefault();
 
-    sendPasswordResetEmail(auth, resetEmail)
-      .then(() => {
-        // Password reset email sent!
-        setshowSendEmail(true);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    //check if the email is correct
+    const regEmail=
+/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()n[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const fogrotEmailPass = document.getElementById("fogrotEmailPass")
+
+if(regEmail.test(fogrotEmailPass.value))
+{
+  sendPasswordResetEmail(auth, resetEmail)
+  .then(() => {
+    // Password reset email sent!
+    setshowSendEmail(true);
+    setforgettenEmailCorrectenece(false)
+  })
+  .catch((error) => {
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
+    // ..
+  });
+}
+
+else {
+  setforgettenEmailCorrectenece(true)
+}
+    
   };
 
 
@@ -88,7 +103,7 @@ const Signin = () => {
 
       <main>
         {/* main form    */}
-        <form className="signinFrm">
+        <form className={`signinFrm ${mainFormState}`}>
           <input
             onChange={(eo) => {
               setemail(eo.target.value);
@@ -121,6 +136,8 @@ const Signin = () => {
           <p
             onClick={() => {
               setshowForgotPass("show");
+              // remove the main form 
+              setmainFormState("dn")
             }}
             className="forgot-pass"
           >
@@ -134,18 +151,20 @@ const Signin = () => {
         <form className={`forget-password ${showForgotPass}`}>
           <i
             onClick={() => {
+              setmainFormState("")
               setshowForgotPass("");
             }}
             className="close fa-solid fa-xmark"
           ></i>
 
-          <input
+          <input 
             onChange={(eo) => {
               setresetEmail(eo.target.value);
             }}
             required
             placeholder=" Email: "
             type="Email"
+            id = "fogrotEmailPass"
           />
 
           <button onClick={(eo) => {
@@ -157,6 +176,12 @@ const Signin = () => {
           {showSendEmail && (
             <p className="check-email">
               please check your email to reset your password
+            </p>
+          )}
+
+{forgettenEmailCorrectenece && (
+            <p className="wrong-email">
+              Please Enter A Right Email<span style={{ animationDuration:"01s"}}><i style={{color:"red" }}  class="fa-solid fa-file-signature"></i></span>
             </p>
           )}
         </form>

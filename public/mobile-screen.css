@@ -1,105 +1,36 @@
-
-
-/* ====================================
-    1. Font Awesom hamburger menu
-======================================= */
-.absolute {
-  position: absolute;
-  top: 0;
-  right: 10px;
+.hide-when-mobile {
+  flex-direction: column;
 }
 
-input {
-  display: none;
-}
-
-.fa-bars {
-  font-size: 30px;
-  transform: scaleX(1.4);
+h1 a,
+h1 {
+  font-size: 25px !important;
 }
 
 
-.fas{
-  position: absolute;
-  right: 10vw;
+a,
+.fa-solid:not(.fa-sun,.fa-moon, .close),
+button,main form p, 
+footer {
+  font-size: 16px !important;
+}
+.close {
+  font-size: 23px !important;
 }
 
-/* ====================================
-    2. show on click
-======================================= */
 
-.show-on-click {
-  display: none;
-  border-top: 2px solid black;
+main form ,.show{
+  width: 80vw !important;
 }
 
-#burger:checked + .show-on-click {
-  display: block;
-}
 
-label{
-  font-size: 22px;
-  /* border: 2px solid red; */
-  display: block;
-  padding: 20px;
-}
-
-label:hover,
-.fa-bars:hover,
-.sub-div li a:hover,
-
-label:hover .fas
-
+main form h1
 {
-  color: cyan;
-  letter-spacing: 2px;
-}
-
-.sub-div li a{
-  
-  display: block;
-}
-
-.main-div{
-  border-bottom: 2px solid black;
-}
-
-/* ====================================
-    3. sub of div
-======================================= */
-
-.sub-div {
-  display: none;
-}
-
-#html:checked + .sub-div,
-#css:checked + .sub-div,
-#js:checked + .sub-div {
-  display: block;
+  font-size: 20px !important;
 }
 
 
-.sub-div li{
-  font-size: 17px;
-  padding: 10px 0 10px 35px;
-}
-
-
-
-/* ====================================
-    3. sub sub of css
-======================================= */
-.sub-sub-div{
-  display: none;
-  margin-top: 17px;
-}
-
-#mini:checked + .sub-sub-div{
-  display: block;
-}
-
-
-.mini-projects{
-  padding: 0;
-  font-size: 17px;
+.send-email-succ{
+  color: rgb(47, 255, 50);
+  font-size: 16px;
 }

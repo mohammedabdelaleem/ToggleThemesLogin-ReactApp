@@ -63,7 +63,7 @@ button:hover { scale:1.05;
   
 
 .send-email-succ{
-  color: rgb(47, 255, 50);
+  color: rgb(47, 255, 50) !important;
   font-size: 19px;
 }
 
